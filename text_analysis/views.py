@@ -15,3 +15,14 @@ def viz_page(request):
 	print("Viz display")
 
 	return render(request, 'viz.html')
+
+def nasdaq_page(request):
+	print("nasdaq page")
+	path = 'data/nasdaq100list.csv'
+	result = fileutil.get_data(path)
+
+	print(result)
+	return render(request, 'nasdaq.html', context={'result':result})
+
+def nasdaq_viz_page(request):
+	return render(request, 'nasdaq_viz.html')

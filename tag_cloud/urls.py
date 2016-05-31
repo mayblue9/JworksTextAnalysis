@@ -21,4 +21,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^wordcount/(?P<pid>[0-9]+)/$', views.home_page),
     url(r'^viz/', views.viz_page),
+    url(r'^nasdaq/', views.nasdaq_page),
+    url(r'^nasdaq_viz/', views.nasdaq_viz_page),
 ]

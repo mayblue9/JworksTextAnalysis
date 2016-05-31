@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import pandas as pd
 from text_analysis import fileutil
+from text_analysis import dbutil
 
 # Create your views here.
 def home_page(request, pid):
@@ -19,7 +20,14 @@ def viz_page(request):
 def nasdaq_page(request):
 	print("nasdaq page")
 	path = 'data/nasdaq100list.csv'
-	result = fileutil.get_data(path)
+
+	# get csv data from local path
+	result = fileutil.get_csv_data(path)
+
+	# insert data to mongodb
+	connection = dbutil.get_mongo_connection()
+	tbl = dbutil.get_mongo_connection(connection)
+	# tbl.insert_bulk_data()
 
 	print(result)
 	return render(request, 'nasdaq.html', context={'result':result})

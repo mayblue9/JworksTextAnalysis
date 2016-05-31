@@ -1,3 +1,4 @@
+from konlpy.tag import Hannanum
 import pandas as pd
 import csv
 import json
@@ -7,7 +8,7 @@ def read_localcsv(path):
 	print(result)
 	return result
 
-def get_data(path):
+def get_json_data(path):
     #r = requests.get(URL)
     #data = r.text
 	RESULTS = {"children": []}
@@ -26,3 +27,20 @@ def get_data(path):
 			})
 	#print(json.dumps(RESULTS))
 	return json.dumps(RESULTS)
+
+def get_tags(text, ntags=50, multiplier=10):
+	h = Hannanum()
+	nouns = h.nouns(text)
+	count = Counter(nouns)
+
+	for word,cnt in count:
+		print(word,cnt)
+
+def get_csv_data(path, column):
+	reader = csv.DictReader(csvfile)
+
+	for line in reader:
+		content += ' ' + line[column]
+	tags = get_tags(content)
+
+	return tags

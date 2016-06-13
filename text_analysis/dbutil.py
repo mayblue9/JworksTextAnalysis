@@ -5,19 +5,24 @@ from pymongo import MongoClient
 def get_mongo_connection():
     client = MongoClient('localhost',27017)
 
-    db = client.movies
+    db = client.local
 
     return db
 
 # get mongodb collection
 def get_mongo_collection(db):
-    collection = db.movies
+    collection = db.wordcount
 
     return collection
 
 # insert items
 def insert_bulk_data(db, json):
     result = db.insert_many(json)
+
+# insert items by loop
+def insert_text_analysis_data(tbl, counter):
+    for word,cnt in counter.most_common(50):
+        tbl.insert_one({word:cnt})
 
 # select all items
 def findAll(db):

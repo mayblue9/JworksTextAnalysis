@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^viz/', views.viz_page),
     url(r'^nasdaq/', views.nasdaq_page),
     url(r'^nasdaq_viz/', views.nasdaq_viz_page),
+    url(r'^d3example/', views.d3_example_page),
 ]
